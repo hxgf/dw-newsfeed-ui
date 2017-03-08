@@ -1,0 +1,81 @@
+
+
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+
+
+
+{{#if data.photo.medium}}
+	<img src="{{data.photo.medium}}" />
+{{/if}}
+
+{{#if data.body}}
+	{{{nl2br data.body}}}
+{{/if}}
+
+
+{{#if data.video_url}}
+	{{data.video_url}}
+{{/if}}
+
+{{#if data.link_url}}
+	{{data.link_title}}
+	{{data.link_photo}}
+	{{data.link_description}}
+	{{data.link_url}}
+{{/if}}
+
+		<br />
+		posted {{format_timestamp data.date_posted}} by [screenname/avatar/profile_link]<br />
+	  <h5>{{#each data.neighborhoods_list}}{{#unless first}}, {{/unless}}<a href="/neighborhoods/{{url_title}}">{{title}}</a>{{/each}} &nbsp;</h5>
+	  <h5>{{#each data.tags_list}}{{#unless first}}, {{/unless}}<a href="/tags/{{url_title}}">{{title}}</a>{{/each}}</h5>
+
+		<br />
+		{{#if can_edit}}
+		<a href="/post/edit/{{data._id}}">(edit)</a>
+		{{/if}}
+<!--
+    <div>
+      image
+      video
+        youtube
+        vimeo
+        custom embed code
+      cool visual representation of link/article?
+    </div>
+
+    <div>
+      <h2>title</h2>
+      <h3><a href="">source title (publication title, link to original)</a></h3>
+      <h4>posted by: <a href="/profile-personal">screenname</a></h4>
+      <h4>date</h4>
+    </div>
+
+    <blockquote>blockquote</blockquote>
+    <div>
+      description
+    </div>
+
+    <div>
+      discussion
+        list
+          avatar
+          <a href="/profile-personal">screenname</a>
+          comment
+          date
+        post new
+          textarea
+          button
+    </div>
+-->
+
+	{{> comment-list}}
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    {{> sidebar}}
+  </div>
+</div>
+

@@ -1,0 +1,74 @@
+
+
+<div class="row">
+  <div class="medium-10 columns content-focus">
+<div class="debugg"></div>
+
+	{{#each posts}}
+		<div class="post">
+		{{#if body}}{{{nl2br body}}}{{/if}}
+		{{#if photo.medium}}
+			<img src="{{photo.medium}}" />
+		{{/if}}
+		{{#if video_url}}{{video_url}}{{/if}}
+		{{#if link_url}}
+		{{link_title}}
+		{{link_photo}}
+		{{link_description}}
+		{{link_url}}{{/if}}
+		<br />
+		--- {{date_posted}} || {{format_timestamp date_posted}} --- <br />
+		posted {{format_timestamp date_posted}} by <a href="/people/{{author_url}}">{{author_screenname}}</a> <a href="/people/{{author_url}}"><img src="{{author_avatar}}" /></a>
+		<a href="/post/{{_id}}">permalink</a><br />
+
+    <h5>{{#each neighborhoods_list}}{{#unless first}}, {{/unless}}<a href="/neighborhoods/{{url_title}}">{{title}}</a>{{/each}} &nbsp;</h5>
+    <h5>{{#each tags_list}}{{#unless first}}, {{/unless}}<a href="/tags/{{url_title}}">{{title}}</a>{{/each}}</h5>
+
+		{{#if can_edit}}
+		<a href="/post/edit/{{_id}}">(edit)</a>
+		{{/if}}
+<hr />
+		</div>
+	{{/each}}
+
+
+<!--
+    <div class="content-feed">
+      <a href="/c/url_title">content title</a>
+      <span>varied content based on content type</span>
+      <span>
+        author screen name,
+        author profile link,
+        comments total,
+        date/time posted,
+        tags?
+        rank? (star, like, heart, some shit)
+      </span>
+    </div>
+-->
+
+<!--
+    <div class="pagination">
+    {{#if paginate.previous}}<a href="/feed/{{paginate.previous_query}}">&larr; Previous page</a>{{/if}}
+    {{#if paginate.next}}<a href="/feed/{{paginate.next_query}}">Next page &rarr;</a>{{/if}}
+    </div>
+-->
+
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    <h6>POST NEW: </h6>
+    <ul class="inline-list content-new-menu">
+      <li><a href="/post/edit/new/link">link (article)</a></li>
+      <li><a href="/post/edit/new/photo">photo</a></li>
+      <li><a href="/post/edit/new/video">video</a></li>
+
+      <li><a href="/event/edit/new">event</a></li>
+
+    </ul>
+
+    {{> sidebar}}
+  </div>
+</div>
+

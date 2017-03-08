@@ -1,0 +1,105 @@
+
+
+<div class="row">
+  <div class="medium-10 columns content-focus">
+
+    <form action="/post/save" method="post">
+
+
+					{{#is type '==' 'photo'}}
+
+          <div class="upload-container-thumb">
+
+      			{{#if data.photo.medium}}
+      			<img src="{{data.photo.medium}}{{#if saved}}?v=2{{/if}}" />
+            {{else}}
+            <div class="placeholder">
+            </div>
+      			{{/if}}
+
+              <div class="control">
+                <!--[if lte IE 8]>
+                <button disabled>Upload Photo</button><br /><br />
+                <small>* Your browser doesn't support photo uploads. Please upgrade your browser to the latest version of Internet Explorer. Firefox and Google Chrome are also supported.</small>
+                <![endif]-->
+
+                <!--[if !lte IE 8]><!-->
+                <a class="thumb-upload-button"><i class="fi-plus"></i> New Photo</a>
+                {{#if crop_image}}<a class="crop-button" href="#crop-image"><i class="fi-crop"></i> Crop Thumbnail</a>{{/if}}
+                <!--<![endif]-->
+              </div>
+
+              <div class="thumb-upload-success">New photo added successfully.
+                <br /><br />
+                <small>* Some images take longer to process than others. Don't be alarmed if your changes aren't reflected immediately. Most photos are processed in less than one minute.</small><br /><br />
+              </div>
+              <div class="thumb-upload">
+                <div class="dropzone" id="dropzone"></div>
+                <div class="upload-instructions">* Large images work best (over 500px wide)</div>
+                <!-- <img id="upload_button" src="/images/blank.gif" /> -->
+              </div>
+    			</div>
+
+					{{/is}}
+
+
+
+					{{#is type '==' 'video'}}
+          <div class="row large-collapse">
+            <label>Video <small>YouTube or Vimeo only</small></label>
+            <input type="text" name="video_url" value="{{data.video_url}}" />
+          </div>
+          {{/is}}
+
+
+					{{#is type '==' 'link'}}
+          <div class="row large-collapse">
+            <label>Link</label>
+            <input type="text" name="link_url" value="{{data.link_url}}" />
+          </div>
+          {{/is}}
+
+
+          <textarea name="body">{{data.body}}</textarea>
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Neighborhood(s)</label>
+              <select name="neighborhood_ids[]" multiple>
+                {{#each neighborhoods}}
+                <option value="{{_id}}" {{#if selected}}selected{{/if}}>{{title}}</option>
+                {{/each}}
+              </select>
+            </div>
+          </div>
+
+          <div class="row large-collapse">
+            <div class="large-12 columns">
+              <label>Tags</label>
+              <input type="text" name="tags" value="{{tags}}" />
+            </div>
+          </div>
+
+
+
+
+      <div id="cfv">
+        <input type="text" name="cfv" />
+      </div>
+
+      <input type="hidden" name="type" value="{{type}}" />
+      <input type="hidden" name="id" value="{{data._id}}" />
+      <button id="save">Save</button>
+			{{#is data._id "!=" "new"}}
+			&nbsp; 
+      <a href="#" rel="delete-post" class="text-link" data-type="post" data-id="{{data._id}}"><i class="fi-x"></i> Delete</a>
+      {{/is}}
+    </form>
+
+
+  </div>
+  <div class="medium-2 columns sidebar">
+    {{> sidebar}}
+  </div>
+</div>
+
